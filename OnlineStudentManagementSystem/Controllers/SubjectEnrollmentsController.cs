@@ -49,11 +49,11 @@ namespace OnlineStudentManagementSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    subjectEnrollment.EnrollId = new();
+                    //subjectEnrollment.EnrollId = new();
 
 
 
-                    return CreatedAtAction("GetSubjectEnrollment", new { subjectEnrollment.EnrollId }, subjectEnrollment);
+                    return CreatedAtAction("GetSubjectEnrollment", new { subjectEnrollment.Id }, subjectEnrollment);
                 }
 
                 return new JsonResult("Somethign Went wrong") { StatusCode = 500 };

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineStudentManagementSystem.Models;
 
-namespace OnlineStudentManagementSystem.Migrations
+namespace OnlineStudentManagementSystem.Migrations1
 {
     [DbContext(typeof(MyDBContext))]
     partial class MyDBContextModelSnapshot : ModelSnapshot

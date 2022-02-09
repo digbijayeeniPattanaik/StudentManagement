@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace OnlineStudentManagementSystem.Models
 {
 
-    [Table("Admins")]
-    public class Admin
+    ////[Table("Admins")]
+    public class Admin : BaseEntity
     {
 
 
-        [Key]
-        public int AdminId { get; set; }
+        ////[Key]
+        ////public int AdminId { get; set; }
         [Required]
-        [Column("AdminUsername", TypeName = "varchar")]
+        ////[Column("AdminUsername", TypeName = "varchar")]
         [MaxLength(20)]
         public string AdminUserName { get; set; }
         [Required]
-        [Column("Password", TypeName = "varchar")]
+        ////[Column("Password", TypeName = "varchar")]
         [MaxLength(10)]
         public string Password { get; set; }
     }

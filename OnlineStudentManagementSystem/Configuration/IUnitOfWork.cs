@@ -13,9 +13,11 @@ namespace OnlineStudentManagementSystem.Configuration
         ISubjectRepository Subject { get; }
         IStudentRepository Student { get; }
         ISubjectEnrollmentRepository SubjectEnrollment { get; }
-        Task CompleteAsync();
+        ////Task CompleteAsync();
 
+        Task<int> CompleteAsync();
 
+        int Complete();
 
         void Dispose();
     }

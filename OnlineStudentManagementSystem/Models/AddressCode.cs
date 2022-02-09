@@ -7,20 +7,18 @@ using System.Threading.Tasks;
 
 namespace OnlineStudentManagementSystem.Models
 {
-    [Table("AddressCodes")]
-    public class AddressCode
+    ////[Table("AddressCodes")]
+    public class AddressCode : BaseEntity
     {
-            [Key]
-            public int AddressCodeId { get; set; }
             [Required]
-            [Column("City", TypeName = "varchar")]
+            ////[Column("City", TypeName = "varchar")]
             [MaxLength(50)]
             public string City { get; set; }
             [Required]
-            [Column("State", TypeName = "varchar")]
+            ////[Column("State", TypeName = "varchar")]
             [MaxLength(50)]
             public string State { get; set; }
-            [Column("ZipCode")]
+            ////[Column("ZipCode")]
             public int ZipCode { get; set; }
             //public virtual ICollection<Student> Students { get; set; }
         }

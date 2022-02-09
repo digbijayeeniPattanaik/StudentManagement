@@ -41,14 +41,25 @@ namespace OnlineStudentManagementSystem.Configuration
         
         
 
-        public async Task CompleteAsync()
+        ////public async Task CompleteAsync()
+        ////{
+        ////    await _context.SaveChangesAsync();
+        ////}
+
+        public async Task<int> CompleteAsync()
         {
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
+
+        public int Complete()
+        {
+            return _context.SaveChanges();
+        }
+
         public  void Dispose()
         {
             _context.Dispose();
-            GC.SuppressFinalize(this);
+            ////GC.SuppressFinalize(this);
         }
 
     }

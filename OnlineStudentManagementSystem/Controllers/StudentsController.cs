@@ -44,11 +44,11 @@ namespace OnlineStudentManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                student.StudentId = new();
+                //student.StudentId = new();
 
 
 
-                return CreatedAtAction("GetStudent", new { student.StudentId }, student);
+                return CreatedAtAction("GetStudent", new { student.Id }, student);
             }
 
             return new JsonResult("Somethign Went wrong") { StatusCode = 500 };

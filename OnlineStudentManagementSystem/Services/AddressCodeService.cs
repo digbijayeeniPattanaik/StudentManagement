@@ -26,9 +26,15 @@ namespace OnlineStudentManagementSystem.Services
         }
         public async Task CreateAddressCode(AddressCode addressCode)
         {
-            await _unitOfWork.AddressCode.Add(addressCode);
-            await _unitOfWork.CompleteAsync();
-            
+            try
+            {
+                await _unitOfWork.AddressCode.Add(addressCode);
+                var numberOfRecord = await _unitOfWork.CompleteAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
        public async Task DeleteAddressCode(int id)
         {

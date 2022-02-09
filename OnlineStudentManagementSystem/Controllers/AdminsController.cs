@@ -49,11 +49,11 @@ namespace OnlineStudentManagementSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    admin.AdminId = new();
+                    ////admin.AdminId = new();
 
 
 
-                    return CreatedAtAction("GetAdmin", new { admin.AdminId }, admin);
+                    return CreatedAtAction("GetAdmin", new { admin.Id }, admin);
                 }
 
                 return new JsonResult("Somethign Went wrong") { StatusCode = 500 };

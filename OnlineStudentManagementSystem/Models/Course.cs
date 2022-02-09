@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace OnlineStudentManagementSystem.Models
 {
-    [Table("Courses")]
-    public class Course
+    ////[Table("Courses")]
+    public class Course : BaseEntity
     {
 
-        [Key]
-        public int CourseId { get; set; }
-        [Column("CourseName", TypeName = "varchar")]
+        ////[Key]
+        ////public int CourseId { get; set; }
+        ////[Column("CourseName", TypeName = "varchar")]
         [MaxLength(50)]
         [Required]
         public string CourseName { get; set; }

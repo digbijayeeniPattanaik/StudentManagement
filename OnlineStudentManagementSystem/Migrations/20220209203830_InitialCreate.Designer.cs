@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineStudentManagementSystem.Models;
 
 namespace OnlineStudentManagementSystem.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220209203830_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace OnlineStudentManagementSystem.Migrations
 
             modelBuilder.Entity("OnlineStudentManagementSystem.Models.AddressCode", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AddressCodeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -39,14 +41,14 @@ namespace OnlineStudentManagementSystem.Migrations
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("AddressCodeId");
 
                     b.ToTable("AddressCodes");
                 });
 
             modelBuilder.Entity("OnlineStudentManagementSystem.Models.Admin", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AdminId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -61,14 +63,14 @@ namespace OnlineStudentManagementSystem.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.HasKey("Id");
+                    b.HasKey("AdminId");
 
                     b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("OnlineStudentManagementSystem.Models.Course", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -78,14 +80,14 @@ namespace OnlineStudentManagementSystem.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.HasKey("Id");
+                    b.HasKey("CourseId");
 
                     b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("OnlineStudentManagementSystem.Models.Student", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -104,7 +106,7 @@ namespace OnlineStudentManagementSystem.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.HasKey("Id");
+                    b.HasKey("StudentId");
 
                     b.HasIndex("AddressCodeId");
 
@@ -115,7 +117,7 @@ namespace OnlineStudentManagementSystem.Migrations
 
             modelBuilder.Entity("OnlineStudentManagementSystem.Models.Subject", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SubjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -127,14 +129,14 @@ namespace OnlineStudentManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("SubjectId");
 
                     b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("OnlineStudentManagementSystem.Models.SubjectEnrollment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EnrollId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -145,7 +147,7 @@ namespace OnlineStudentManagementSystem.Migrations
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("EnrollId");
 
                     b.HasIndex("StudentId");
 

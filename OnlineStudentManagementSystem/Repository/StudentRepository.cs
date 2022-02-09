@@ -30,7 +30,7 @@ namespace OnlineStudentManagementSystem.Repository
             {
                 try
                 {
-                    var existingUser = await dbSet.Where(x => x.StudentId == entity.StudentId)
+                    var existingUser = await dbSet.Where(x => x.Id == entity.Id)
                                                         .FirstOrDefaultAsync();
 
                     if (existingUser == null)
@@ -54,7 +54,7 @@ namespace OnlineStudentManagementSystem.Repository
             {
                 try
                 {
-                    var exist = await dbSet.Where(x => x.StudentId == id)
+                    var exist = await dbSet.Where(x => x.Id == id)
                                             .FirstOrDefaultAsync();
 
                     if (exist == null) return false;

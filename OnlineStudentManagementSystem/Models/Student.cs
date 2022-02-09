@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace OnlineStudentManagementSystem.Models
 {
-    [Table("Students")]
-    public class Student
+    ////[Table("Students")]
+    public class Student : BaseEntity
     {
 
-        [Key]
-        public int StudentId { get; set; }
-        [Column("StudentName", TypeName = "varchar")]
+        ////[Key]
+        ////public int StudentId { get; set; }
+        ////[Column("StudentName", TypeName = "varchar")]
         [MaxLength(50)]
         [Required]
         public string StudentName { get; set; }
         [Required]
-        [ForeignKey("Course")]
+        ////[ForeignKey("Course")]
         public int CourseId { get; set; }
         [Required]
-        [ForeignKey("AddressCode")]
+        ////[ForeignKey("AddressCode")]
         public int AddressCodeId { get; set; }
        
       

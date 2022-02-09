@@ -38,6 +38,11 @@ namespace OnlineStudentManagementSystem.Repository
             return true;
         }
 
+        public void AddOnly(T entity)
+        {
+            dbSet.Add(entity);
+        }
+
         public virtual  Task<bool> Delete(int id)
         {
             throw new NotImplementedException();

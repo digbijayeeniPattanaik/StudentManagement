@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace OnlineStudentManagementSystem.Models
 {
 
-    [Table("SubjectEnrollementnts")]
-    public class SubjectEnrollment
+    ////[Table("SubjectEnrollementnts")]
+    public class SubjectEnrollment : BaseEntity
     {
 
-        [Key]
-        public int EnrollId { get; set; }
+        //[Key]
+        //public int EnrollId { get; set; }
         [Required]
-        [ForeignKey("Subject")]
+        ////[ForeignKey("Subject")]
         public int SubjectId { get; set; }
         [Required]
-        [ForeignKey("Student")]
+        ////[ForeignKey("Student")]
         public int StudentId { get; set; }
         public virtual Subject Subjects { get; set; }
     }

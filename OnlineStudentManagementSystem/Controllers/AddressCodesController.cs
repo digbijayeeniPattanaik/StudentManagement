@@ -43,15 +43,11 @@ namespace OnlineStudentManagementSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAddressCode(AddressCode addressCode)
+        public async Task<IActionResult> CreateAddressCode(AddressCode addressCode)
         {
             if (ModelState.IsValid)
             {
-                
-                _addressCodeService.CreateAddressCode(addressCode);
-
-
-
+                await _addressCodeService.CreateAddressCode(addressCode);
                 return Ok(addressCode);
             }
 

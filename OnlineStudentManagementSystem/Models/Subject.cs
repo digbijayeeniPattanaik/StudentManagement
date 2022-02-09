@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace OnlineStudentManagementSystem.Models
 {
-    [Table("Subjects")]
-    public class Subject
+    ////[Table("Subjects")]
+    public class Subject : BaseEntity
     {
 
-        [Key]
-        public int SubjectId { get; set; }
+        ////[Key]
+        ////public int SubjectId { get; set; }
         [Required]
-        [Column("SubjectName", TypeName = "varchar")]
+        ////[Column("SubjectName", TypeName = "varchar")]
         public string SubjectName { get; set; }
         [Required]
-        [Column("Marks")]
+        ////[Column("Marks")]
         public int Marks { get; set; }
        
        
