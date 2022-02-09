@@ -1,0 +1,74 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using OnlineStudentManagementSystem.Models;
+using OnlineStudentManagementSystem.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace OnlineStudentManagementSystem.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AdminsController : ControllerBase
+    {
+        [Route("api/[controller]")]
+        [ApiController]
+        public class AdressCodesController : ControllerBase
+
+        {
+            private readonly IAdminService _adminService;
+
+            public AdressCodesController(IAdminService adminService)
+            {
+                this._adminService = adminService;
+            }
+
+            [HttpGet]
+            public async Task<IActionResult> Get()
+            {
+                var admin = await _adminService.Get();
+
+                return Ok(admin);
+            }
+
+            [HttpGet("{id}")]
+            public async Task<IActionResult> GetAdmin(int id)
+            {
+                var item = await _adminService.GetById(id);
+
+                if (item == null)
+                    return NotFound();
+
+                return Ok(item);
+            }
+
+            [HttpPost]
+            public IActionResult CreateAdmin(Admin admin)
+            {
+                if (ModelState.IsValid)
+                {
+                    admin.AdminId = new();
+
+
+
+                    return CreatedAtAction("GetAdmin", new { admin.AdminId }, admin);
+                }
+
+                return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
+            }
+
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> DeleteAdmin(int id)
+            {
+                var item = await _adminService.GetById(id);
+
+                if (item == null)
+                    return BadRequest();
+
+                return Ok(item);
+            }
+        }
+    }
+}
