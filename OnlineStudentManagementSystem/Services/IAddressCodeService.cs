@@ -14,6 +14,8 @@ namespace OnlineStudentManagementSystem.Services
         Task CreateAddressCode(AddressCode addressCode);
         Task DeleteAddressCode (int id);
 
+        Task<AddressCode> GetAddressCodeByFilter(string city, string state);
+
 
     }
 }

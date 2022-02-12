@@ -24,11 +24,22 @@ namespace OnlineStudentManagementSystem.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(string city, string state)
         {
-            var addressCodes = await _addressCodeService.Get();
+            if (string.IsNullOrEmpty(city) && string.IsNullOrEmpty(state))
+            {
+                var addressCodes = await _addressCodeService.Get();
+                return Ok(addressCodes);
+            }
+            else
+            {
+                var item = await _addressCodeService.GetAddressCodeByFilter(city, state);
 
-            return Ok(addressCodes);
+                if (item == null)
+                    return NotFound();
+
+                return Ok(item);
+            }
         }
 
         [HttpGet("{id}")]
@@ -41,6 +52,7 @@ namespace OnlineStudentManagementSystem.Controllers
 
             return Ok(item);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateAddressCode(AddressCode addressCode)
@@ -61,6 +73,8 @@ namespace OnlineStudentManagementSystem.Controllers
 
             if (item == null)
                 return BadRequest();
+
+            await _addressCodeService.DeleteAddressCode(id);
 
             return Ok(item);
         }

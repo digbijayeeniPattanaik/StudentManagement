@@ -36,10 +36,17 @@ namespace OnlineStudentManagementSystem.Services
                 throw ex;
             }
         }
-       public async Task DeleteAddressCode(int id)
+        public async Task DeleteAddressCode(int id)
         {
             await _unitOfWork.AddressCode.Delete(id);
             await _unitOfWork.CompleteAsync();
+        }
+
+        public async Task<AddressCode> GetAddressCodeByFilter(string city, string state)
+        {
+            return await _unitOfWork.AddressCode.GetAsync(filter: a => (!string.IsNullOrWhiteSpace(city) ? a.City == city : true) &&
+                                                                       (!string.IsNullOrWhiteSpace(state) ? a.State == state : true),
+                                                          orderBy: a => a.OrderBy(b => b.City));
         }
 
     }

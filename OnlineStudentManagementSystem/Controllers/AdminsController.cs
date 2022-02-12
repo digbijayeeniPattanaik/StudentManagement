@@ -13,62 +13,56 @@ namespace OnlineStudentManagementSystem.Controllers
     [ApiController]
     public class AdminsController : ControllerBase
     {
-        [Route("api/[controller]")]
-        [ApiController]
-        public class AdressCodesController : ControllerBase
+        private readonly IAdminService _adminService;
 
+        public AdminsController(IAdminService adminService)
         {
-            private readonly IAdminService _adminService;
+            this._adminService = adminService;
+        }
 
-            public AdressCodesController(IAdminService adminService)
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var admin = await _adminService.Get();
+
+            return Ok(admin);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAdmin(int id)
+        {
+            var item = await _adminService.GetById(id);
+
+            if (item == null)
+                return NotFound();
+
+            return Ok(item);
+        }
+
+        [HttpPost]
+        public IActionResult CreateAdmin(Admin admin)
+        {
+            if (ModelState.IsValid)
             {
-                this._adminService = adminService;
+                ////admin.AdminId = new();
+
+
+
+                return CreatedAtAction("GetAdmin", new { admin.Id }, admin);
             }
 
-            [HttpGet]
-            public async Task<IActionResult> Get()
-            {
-                var admin = await _adminService.Get();
+            return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
+        }
 
-                return Ok(admin);
-            }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAdmin(int id)
+        {
+            var item = await _adminService.GetById(id);
 
-            [HttpGet("{id}")]
-            public async Task<IActionResult> GetAdmin(int id)
-            {
-                var item = await _adminService.GetById(id);
+            if (item == null)
+                return BadRequest();
 
-                if (item == null)
-                    return NotFound();
-
-                return Ok(item);
-            }
-
-            [HttpPost]
-            public IActionResult CreateAdmin(Admin admin)
-            {
-                if (ModelState.IsValid)
-                {
-                    ////admin.AdminId = new();
-
-
-
-                    return CreatedAtAction("GetAdmin", new { admin.Id }, admin);
-                }
-
-                return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
-            }
-
-            [HttpDelete("{id}")]
-            public async Task<IActionResult> DeleteAdmin(int id)
-            {
-                var item = await _adminService.GetById(id);
-
-                if (item == null)
-                    return BadRequest();
-
-                return Ok(item);
-            }
+            return Ok(item);
         }
     }
 }
