@@ -18,17 +18,17 @@ namespace OnlineStudentManagementSystem.Services
 
         public async Task<IEnumerable<AddressCode>> Get()
         {
-            return await _unitOfWork.AddressCode.All();
+            return await _unitOfWork.Repository<AddressCode>().GetListAsync();
         }
         public async Task<AddressCode> GetById(int id)
         {
-            return await _unitOfWork.AddressCode.GetById(id);
+            return await _unitOfWork.Repository<AddressCode>().GetById(id);
         }
         public async Task CreateAddressCode(AddressCode addressCode)
         {
             try
             {
-                await _unitOfWork.AddressCode.Add(addressCode);
+                await _unitOfWork.Repository<AddressCode>().Add(addressCode);
                 var numberOfRecord = await _unitOfWork.CompleteAsync();
             }
             catch (Exception ex)
@@ -38,13 +38,13 @@ namespace OnlineStudentManagementSystem.Services
         }
         public async Task DeleteAddressCode(int id)
         {
-            await _unitOfWork.AddressCode.Delete(id);
+            await _unitOfWork.Repository<AddressCode>().Delete(id);
             await _unitOfWork.CompleteAsync();
         }
 
         public async Task<AddressCode> GetAddressCodeByFilter(string city, string state)
         {
-            return await _unitOfWork.AddressCode.GetAsync(filter: a => (!string.IsNullOrWhiteSpace(city) ? a.City == city : true) &&
+            return await _unitOfWork.Repository<AddressCode>().GetAsync(filter: a => (!string.IsNullOrWhiteSpace(city) ? a.City == city : true) &&
                                                                        (!string.IsNullOrWhiteSpace(state) ? a.State == state : true),
                                                           orderBy: a => a.OrderBy(b => b.City));
         }
